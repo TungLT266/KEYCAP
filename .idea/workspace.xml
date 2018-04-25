@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/vuivuiSearch.php" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dcd04cc-78f8-4777-93b4-a95aeb639802" name="Default" comment="" />
+    <list default="true" id="7d21c349-8c46-4995-b92b-3321edd717bb" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,18 +9,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="juno1.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/juno1.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -47,8 +34,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="temp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="temp" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="KEYCAP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KEYCAP" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -79,17 +66,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1dcd04cc-78f8-4777-93b4-a95aeb639802" name="Default" comment="" />
-      <created>1524672134426</created>
+      <changelist id="7d21c349-8c46-4995-b92b-3321edd717bb" name="Default" comment="" />
+      <created>1524675264990</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1524672134426</updated>
-      <workItem from="1524672136572" duration="843000" />
+      <updated>1524675264990</updated>
+      <workItem from="1524675267860" duration="27000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="843000" />
+    <option name="totallyTimeSpent" value="27000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -100,7 +87,7 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" />
@@ -120,45 +107,5 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vnzoom.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/adayroiImagelistSSG.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="112" column="20" selection-start-line="112" selection-start-column="10" selection-end-line="112" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dienmayxanhImagelistSSG.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-495" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lazadaImagelistSSG.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nguyenKimImagelistSSG.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/thegioididongImagelistSSG.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ngoccameraImage.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/juno1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
