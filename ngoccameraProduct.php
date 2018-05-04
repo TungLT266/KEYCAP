@@ -15,7 +15,7 @@ function vdd($var){
 }
 
 $result = [];
-$url = 'http://ngoccamera.vn/san-pham/canon-ef-35mm-f1-4l-ii-usm-id482';
+$url = 'http://ngoccamera.vn/san-pham/canon-eos-m3-id242';
 $output = getContent($url);
 
 if (preg_match('~Đường dẫn trang không tồn tại.~', $output)) {
@@ -28,8 +28,8 @@ if (preg_match('~Đường dẫn trang không tồn tại.~', $output)) {
 //    $result['stock_status'] = PRODUCT_MERCHANT_STOCK_STATUS_OUT;
 //}
 
-if ( preg_match('~<div class="row detail-table-price">.+?class="text-danger">\s*([0-9\.]+)~', $output, $matches) ) {
-    $result['price'] = (int)str_replace('.', '', $matches[1]);
+if ( preg_match_all('~<div class="row detail-table-price">.+?class="text-danger">\s*([0-9\.]+)~', $output, $matches) ) {
+    $result['price'] = (int)str_replace('.', '', end($matches[1]));
 }
 
 if ( preg_match('~<h1 class="detail-title"><span>(.+?)<\/span><\/h1>~', $output, $matches) ) {
