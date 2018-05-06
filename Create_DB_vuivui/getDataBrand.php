@@ -1,10 +1,5 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "vuivui";
-
 function getContent($url)
 {
     $ch = curl_init($url);
@@ -65,36 +60,74 @@ function multiCurl($data)
 }
 
 function vdd($var){
+    echo '<pre>';
     var_dump($var);
+    echo '</pre>';
     die();
 }
 
-$url = 'https://www.vuivui.com/thuong-hieu-xxx-118';
-$content = getContent($url);
-$result = array();
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'vuivui';
 
-if(!preg_match('~<h1>TRANG BẠN TÌM KHÔNG TỒN TẠI<\/h1>~', $content)){
-    if(preg_match('~<h2 class="title">.+?<b>(.+?)<\/b>~s', $content, $matches)){
-        $name = $matches[1];
+
+$conn = new mysqli($servername, $username, $password, $database);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+mysqli_query($conn,"SET NAMES 'UTF8'");
+
+$stackSize = 8;
+$resultList = array();
+
+for($i=1; $i<2400; $i+=$stackSize){
+    $urlList = [];
+    for($j=0; $j<$stackSize; $j++){
+        $urlList[] = 'https://www.vuivui.com/thuong-hieu-xxx-'.($i+$j);
     }
 
-    if(preg_match('~\d+$~s', $url, $matches)){
-        $id = $matches[0];
+    $contentList = multiCurl($urlList);
+    foreach ($contentList as $index => $content){
+        if(!preg_match('~<h1>TRANG BẠN TÌM KHÔNG TỒN TẠI<\/h1>~', $content)){
+            $result = [];
+            // id
+            if(preg_match('~\d+$~s', $urlList[$index], $matches)){
+                $result[0] = $matches[0];
+            }
+
+            // name
+            if(preg_match('~<h2 class="title">.+?<b>(.+?)<\/b>~s', $content, $matches)){
+                $result[1] = $matches[1];
+            }
+
+            // description
+            if(preg_match('~<div class="info ">(.+?<\/div>)\s*<\/div>~s', $content, $matches)){
+                $result[2] = $matches[1];
+            }
+
+            // logo
+            if(preg_match('~<figure class="companylogo">.+?src="(.+?)"~s', $content, $matches)){
+                $result[3] = 'https:'.$matches[1];
+            }
+
+            if(isset($result[1])){
+                $resultList[] = $result;
+            }
+        }
     }
-
-    if(preg_match('~<div class="info ">(.+?<\/div>)\s*<\/div>~s', $content, $matches)){
-        $description = $matches[1];
-    }
-
-    if(preg_match('~<figure class="companylogo">.+?src="(.+?)"~s', $content, $matches)){
-        $logo = 'https:'.$matches[1];
-    }
-
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    $sql = "INSERT INTO brand (id, name, description, logo, status)
-            VALUES ('12', 'a', 'a', 'a', '1')";
-    mysqli_query($conn, $sql);
 }
 
-//vdd($result);
+$sql = '';
+foreach ($resultList as $result){
+    if($sql == ''){
+        $sql = "INSERT INTO brand (id, name, description, logo) VALUES ('$result[0]', '$result[1]', '$result[2]', '$result[3]')";
+    } else{
+        $sql = $sql . ", ('$result[0]', '$result[1]', '$result[2]', '$result[3]')";
+    }
+}
+
+if($sql != ''){
+    mysqli_query($conn, $sql);
+    echo 'success';
+}
