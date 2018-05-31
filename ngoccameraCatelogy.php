@@ -71,16 +71,47 @@ $totalPage = 0;
 $stackSize = 10;
 $leechLinkList = array();
 
-$url = 'http://ngoccamera.vn/san-pham/may-anh-ong-kinh-roi-cid3';
+$url = 'http://ngoccamera.vn/san-pham/ong-kinh-cid5';
 
-$content = getContent($url);
-if (preg_match_all('~<li class=\'page-item\'>.+?<\/li>~', $content, $matches)) {
-    if (sizeof($matches[0]) > 3) {
-        if (preg_match('~>(\d+)<\/a>~', $matches[0][sizeof($matches[0]) - 2], $matches)) {
-            $totalPage = (int)$matches[1];
+//$content = getContent($url);
+//if (preg_match_all('~<li class=\'page-item\'>.+?<\/li>~', $content, $matches)) {
+//    if (sizeof($matches[0]) > 3) {
+//        if (preg_match('~>(\d+)<\/a>~', $matches[0][sizeof($matches[0]) - 2], $matches)) {
+//            $totalPage = (int)$matches[1];
+//        }
+//    }
+//}
+
+$page = 1;
+while ($page != 0) {
+    $linkPage = [];
+    for ($i = 0; $i < $stackSize; $i++) {
+        $linkPage[] = $url . '?page=' . ($page + $i);
+    }
+
+//    vdd($linkPage);
+
+    $contentList = multiCurl($linkPage);
+//    vdd($contentList);
+
+    foreach ($contentList as $content) {
+//        vdd($content);
+        if (preg_match_all('~<li class="product-item text-center col-post">\s+<a href="(.+?)".+?<p class="price-new price">(.+?)<\/p>~', $content, $matches)) {
+            foreach ($matches[1] as $index => $link) {
+                if ($matches[2][$index] != 'Liên hệ') {
+                    $leechLinkList[] = 'http://ngoccamera.vn' . $link;
+                }
+            }
+
+        } else if (!preg_match('~<b>Warning<\/b>~', $content)) {
+            $page = 0;
         }
     }
+    $page += $stackSize;
+    vdd($leechLinkList);
 }
+//vdd($leechLinkList);
+die();
 
 if ($totalPage > 0) {
     $linkPage = [];
@@ -90,15 +121,10 @@ if ($totalPage > 0) {
 //    vdd($linkPage);
     $contentList = multiCurl($linkPage);
 
-    vdd($contentList[3]);
-//    vdd($contentList[3]);
-//    getLinkList($contentList[3], $leechLinkList);
-//    vdd($leechLinkList);
-
-    foreach ($contentList as $content){
+    foreach ($contentList as $content) {
         if (preg_match_all('~<li class="product-item text-center col-post">\s+<a href="(.+?)".+?<p class="price-new price">(.+?)<\/p>~', $content, $matches)) {
             foreach ($matches[1] as $index => $link) {
-                if($matches[2][$index]!='Liên hệ'){
+                if ($matches[2][$index] != 'Liên hệ') {
                     $leechLinkList[] = 'http://ngoccamera.vn' . $link;
                 }
             }
@@ -107,7 +133,7 @@ if ($totalPage > 0) {
 } else {
     if (preg_match_all('~<li class="product-item text-center col-post">\s+<a href="(.+?)".+?<p class="price-new price">(.+?)<\/p>~', $content, $matches)) {
         foreach ($matches[1] as $index => $link) {
-            if($matches[2][$index]!='Liên hệ'){
+            if ($matches[2][$index] != 'Liên hệ') {
                 $leechLinkList[] = 'http://ngoccamera.vn' . $link;
             }
         }
